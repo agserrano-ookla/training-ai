@@ -1,0 +1,66 @@
+{
+  "users": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440001",
+      "email": "alice.johnson@email.com",
+      "first_name": "Alice",
+      "last_name": "Johnson",
+      "created_at": "2023-01-15T10:30:00Z",
+      "updated_at": "2023-01-15T10:30:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440002",
+      "email": "bob.smith@email.com",
+      "first_name": "Bob",
+      "last_name": "Smith",
+      "created_at": "2023-02-20T14:45:00Z",
+      "updated_at": "2023-02-20T14:45:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440003",
+      "email": "carol.williams@email.com",
+      "first_name": "Carol",
+      "last_name": "Williams",
+      "created_at": "2023-03-10T09:15:00Z",
+      "updated_at": "2023-03-10T09:15:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440004",
+      "email": "david.brown@email.com",
+      "first_name": "David",
+      "last_name": "Brown",
+      "created_at": "2023-04-05T16:20:00Z",
+      "updated_at": "2023-04-05T16:20:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440005",
+      "email": "eva.davis@email.com",
+      "first_name": "Eva",
+      "last_name": "Davis",
+      "created_at": "2023-05-12T11:00:00Z",
+      "updated_at": "2023-05-12T11:00:00Z"
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440006",
+      "email": "frank.miller@email.com",
+      "first_name": "Frank",
+      "last_name": "Miller",
+      "created_at": "2023-06-18T13:30:00Z",
+      "updated_at": "2023-06-18T13:30:00Z"
+    }
+  ],
+  "metadata": {
+    "table_name": "users",
+    "total_records": 6,
+    "schema": {
+      "id": "UUID primary key",
+      "email": "TEXT unique not null",
+      "first_name": "TEXT not null",
+      "last_name": "TEXT not null",
+      "created_at": "TIMESTAMPTZ not null",
+      "updated_at": "TIMESTAMPTZ not null"
+    },
+    "generated_at": "2024-01-01T00:00:00Z",
+    "description": "JSON representation of the users table from the blog database schema"
+  }
+}

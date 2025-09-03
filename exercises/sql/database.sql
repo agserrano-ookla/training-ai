@@ -97,3 +97,39 @@ create index idx_posts_created_at on public.posts(created_at desc);
 create index idx_post_comments_post_id on public.post_comments(post_id);
 create index idx_post_comments_author_id on public.post_comments(author_id);
 create index idx_post_comments_created_at on public.post_comments(created_at desc);
+
+-- User post statistics view
+-- Shows for each user: total posts count and average comments per post
+create view public.user_post_stats as
+select
+    u.id as user_id,
+    u.email,
+    u.first_name,
+    u.last_name,
+    coalesce(post_stats.total_posts, 0) as total_posts,
+    coalesce(post_stats.avg_comments_per_post, 0.0) as avg_comments_per_post
+from
+    public.users u
+left join (
+    select
+        p.author_id,
+        count(p.id) as total_posts,
+        round(avg(comment_counts.comment_count), 2) as avg_comments_per_post
+    from
+        public.posts p
+    left join (
+        select
+            post_id,
+            count(*) as comment_count
+        from
+            public.post_comments
+        group by
+            post_id
+    ) comment_counts on p.id = comment_counts.post_id
+    group by
+        p.author_id
+) post_stats on u.id = post_stats.author_id
+order by
+    total_posts desc, avg_comments_per_post desc;
+
+comment on view public.user_post_stats is 'User statistics showing total posts and average comments per post';

@@ -1,0 +1,70 @@
+-- Seed script for users, posts, and comments
+-- Assumes tables: users, posts, comments
+
+INSERT INTO users (id, name_first, name_last, email, created_at) VALUES
+  (gen_random_uuid(), 'Alice', 'Anderson', 'alice@example.com', NOW()),
+  (gen_random_uuid(), 'Bob', 'Brown', 'bob@example.com', NOW()),
+  (gen_random_uuid(), 'Charlie', 'Clark', 'charlie@example.com', NOW()),
+  (gen_random_uuid(), 'Diana', 'Davis', 'diana@example.com', NOW()),
+  (gen_random_uuid(), 'Eve', 'Evans', 'eve@example.com', NOW()),
+  (gen_random_uuid(), 'Frank', 'Foster', 'frank@example.com', NOW()),
+  (gen_random_uuid(), 'Grace', 'Green', 'grace@example.com', NOW()),
+  (gen_random_uuid(), 'Heidi', 'Hill', 'heidi@example.com', NOW()),
+  (gen_random_uuid(), 'Ivan', 'Iverson', 'ivan@example.com', NOW()),
+  (gen_random_uuid(), 'Judy', 'Jones', 'judy@example.com', NOW()),
+  (gen_random_uuid(), 'Karl', 'King', 'karl@example.com', NOW()),
+  (gen_random_uuid(), 'Laura', 'Lewis', 'laura@example.com', NOW()),
+  (gen_random_uuid(), 'Mallory', 'Morris', 'mallory@example.com', NOW()),
+  (gen_random_uuid(), 'Niaj', 'Nelson', 'niaj@example.com', NOW()),
+  (gen_random_uuid(), 'Olivia', 'Owens', 'olivia@example.com', NOW()),
+  (gen_random_uuid(), 'Peggy', 'Parker', 'peggy@example.com', NOW()),
+  (gen_random_uuid(), 'Quentin', 'Quinn', 'quentin@example.com', NOW()),
+  (gen_random_uuid(), 'Rupert', 'Reed', 'rupert@example.com', NOW()),
+  (gen_random_uuid(), 'Sybil', 'Smith', 'sybil@example.com', NOW()),
+  (gen_random_uuid(), 'Trent', 'Turner', 'trent@example.com', NOW());
+
+-- Insert posts for each user (1 per user)
+INSERT INTO posts (id, author_id, category, title, created_at) VALUES
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Alice'), 'tutorial', 'Alice Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Bob'), 'opinion', 'Bob Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Charlie'), 'review', 'Charlie Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Diana'), 'tutorial', 'Diana Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Eve'), 'opinion', 'Eve Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Frank'), 'review', 'Frank Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Grace'), 'tutorial', 'Grace Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Heidi'), 'opinion', 'Heidi Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Ivan'), 'review', 'Ivan Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Judy'), 'tutorial', 'Judy Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Karl'), 'opinion', 'Karl Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Laura'), 'review', 'Laura Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Mallory'), 'tutorial', 'Mallory Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Niaj'), 'opinion', 'Niaj Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Olivia'), 'review', 'Olivia Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Peggy'), 'tutorial', 'Peggy Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Quentin'), 'opinion', 'Quentin Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Rupert'), 'review', 'Rupert Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Sybil'), 'tutorial', 'Sybil Post', NOW()),
+  (gen_random_uuid(), (SELECT id FROM users WHERE name_first='Trent'), 'opinion', 'Trent Post', NOW());
+
+-- Insert comments for each post (1 per post)
+INSERT INTO post_comments (id, post_id, author_id, content, created_at) VALUES
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Alice Post'), (SELECT id FROM users WHERE name_first='Bob'), 'Nice post, Alice!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Bob Post'), (SELECT id FROM users WHERE name_first='Charlie'), 'Great post, Bob!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Charlie Post'), (SELECT id FROM users WHERE name_first='Diana'), 'Interesting, Charlie!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Diana Post'), (SELECT id FROM users WHERE name_first='Eve'), 'Thanks for sharing, Diana!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Eve Post'), (SELECT id FROM users WHERE name_first='Frank'), 'Good read, Eve!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Frank Post'), (SELECT id FROM users WHERE name_first='Grace'), 'Well written, Frank!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Grace Post'), (SELECT id FROM users WHERE name_first='Heidi'), 'Nice, Grace!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Heidi Post'), (SELECT id FROM users WHERE name_first='Ivan'), 'Cool post, Heidi!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Ivan Post'), (SELECT id FROM users WHERE name_first='Judy'), 'Thanks Ivan!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Judy Post'), (SELECT id FROM users WHERE name_first='Karl'), 'Great, Judy!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Karl Post'), (SELECT id FROM users WHERE name_first='Laura'), 'Nice one, Karl!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Laura Post'), (SELECT id FROM users WHERE name_first='Mallory'), 'Good job, Laura!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Mallory Post'), (SELECT id FROM users WHERE name_first='Niaj'), 'Interesting, Mallory!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Niaj Post'), (SELECT id FROM users WHERE name_first='Olivia'), 'Thanks Niaj!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Olivia Post'), (SELECT id FROM users WHERE name_first='Peggy'), 'Great post, Olivia!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Peggy Post'), (SELECT id FROM users WHERE name_first='Quentin'), 'Nice, Peggy!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Quentin Post'), (SELECT id FROM users WHERE name_first='Rupert'), 'Good read, Quentin!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Rupert Post'), (SELECT id FROM users WHERE name_first='Sybil'), 'Well written, Rupert!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Sybil Post'), (SELECT id FROM users WHERE name_first='Trent'), 'Nice, Sybil!', NOW()),
+  (gen_random_uuid(), (SELECT id FROM posts WHERE title='Trent Post'), (SELECT id FROM users WHERE name_first='Alice'), 'Thanks Trent!', NOW());

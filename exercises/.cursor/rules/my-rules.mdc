@@ -4,4 +4,15 @@ globs:
 alwaysApply: true
 ---
 
+## SQL
+
+- Always use an id of UUID type for primary keys using `gen_random_uuid`.
+- Include `created_at` timestamps for all tables.
+- Set up the `set_updated_at` trigger function for all updates.
+- Use non-nullable types wherever possible.
+- Add comments for all tables and columns.
+- Prefer checks for valid values on upsert instead of using SQL enum types.
+
 End every response with ❤️
+
+
